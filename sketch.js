@@ -254,3 +254,8 @@ class Bullet{
 //hej 
 //Mikkel
 //mig
+
+//git add (file names)
+//git status 
+//git commit -m (navn på commit)
+//git push -u origin master 
