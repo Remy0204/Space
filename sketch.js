@@ -254,6 +254,7 @@ class Bullet{
 //hej 
 //Mikkel
 //mig
+// mit
 
 //git add (file names)
 //git status 
