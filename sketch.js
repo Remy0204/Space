@@ -251,11 +251,10 @@ class Bullet{
 }
 
 //https://github.com/Remy0204/Space.git
-//hej 
-//Mikkel
-//mig
-// mit
 
+// HOW TO SAVE TO CLOUD AFTER CHANGES TO CODE
+
+//git init 
 //git add (file names)
 //git status 
 //git commit -m (navn på commit)
