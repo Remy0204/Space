@@ -2,6 +2,10 @@ let bullets = []
 let bulletnr = 0
 let aliensLine1 = []
 let aliensLine2 = []
+let aliensLine3 = []
+let bunkers = [];
+
+
 
 
 function preload(){
@@ -19,27 +23,33 @@ let ship_0, ship_1, ship_2
 
 function setup() {
     
-    createCanvas(400, 400);
+    createCanvas(600, 600);
     background(0)
+ 
     ship = new Ship(width/2-10,height-100);
    
     ship.draw();
 
-    for (let i=0; i<5; i++){
+    for (let i=0; i<8; i++){
         aliensLine1[i]=new Alien(90+50*i,20)
         aliensLine2[i]=new Alien(90+50*i,70)
+        aliensLine3[i]=new Alien(90+50*i,120)
 
         
             
     }
     
-
+    for (let i = 0; i < 3; i++) { // Adjust the number of bunkers as needed
+    bunkers.push(new Bunker(100 + i * 200, height - 125, 55, 10)); // Adjust positions and size
+  }
+}
    // alien = new Alien(width/2-10,20)
   
 
 
-	
-}
+
+
+
 
 function draw()
 {
@@ -53,17 +63,25 @@ function draw()
      //   print("before hasHit")
         bullets[i].hasHit(aliensLine1);
         bullets[i].hasHit(aliensLine2);
+        bullets[i].hasHit(aliensLine3);
       //  print(i)
        // print(bullets.length)
     //    print("after hashit")
      //  bullets[i].hasHit(aliensLine2);
 
+     
     }
-    for (let i=0;i<5;i++){
+
+    for (let i = 0; i < bunkers.length; i++) {
+        bunkers[i].draw();
+      }
+    for (let i=0;i<8;i++){
         aliensLine1[i].draw()
         aliensLine1[i].update()
         aliensLine2[i].draw()
         aliensLine2[i].update()
+        aliensLine3[i].draw()
+        aliensLine3[i].update()
         
     }
     //print("locationStage "aliensLine1[2].locationStage)
@@ -75,6 +93,22 @@ function draw()
         noLoop()
 }
 
+class Bunker {
+    constructor(x, y, width, height) {
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+    }
+  
+    draw() {
+      // Draw the bunker using rect()
+      fill(255, 255, 200); // Adjust the color as needed
+      rect(this.x, this.y, this.width, this.height);
+    }
+  }
+
+
 class Alien{
     constructor(x,y){
         this.x = x
@@ -84,7 +118,7 @@ class Alien{
         this.alive = true;
         this.locationStage = 0
         this.diff_locationStage = 1
-        this.dx = 3
+        this.dx = 5
        
     }
 
@@ -113,12 +147,12 @@ class Alien{
     }
     update(){
         if (this.locationStage == 16 ) {
-            this.y+=3
+            this.y+=9 //hastighed ned af,når alians færdigør en omgang
             this.dx = -this.dx
             this.locationStage++
         }
         else if(this.locationStage==48){
-            this.y+=3
+            this.y+=9 ////hastighed ned af,når alians færdigør en omgang
             this.dx = -this.dx
             this.locationStage = -15    
 
@@ -255,7 +289,7 @@ class Bullet{
 // HOW TO SAVE TO CLOUD AFTER CHANGES TO CODE
 
 //git init 
-//git add (file names)
+//git add -A
 //git status 
 //git commit -m (navn på commit)
 //git push -u origin master 
