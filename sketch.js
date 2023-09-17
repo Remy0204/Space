@@ -61,9 +61,10 @@ function draw()
         bullets[i].draw();
         bullets[i].update();
      //   print("before hasHit")
-        bullets[i].hasHit(aliensLine1);
-        bullets[i].hasHit(aliensLine2);
-        bullets[i].hasHit(aliensLine3);
+        bullets[i].hasHitAliens(aliensLine1);
+        bullets[i].hasHitAliens(aliensLine2);
+        bullets[i].hasHitAliens(aliensLine3);
+        bullets[i].hasHitBunkers(bunkers);
       //  print(i)
        // print(bullets.length)
     //    print("after hashit")
@@ -252,13 +253,14 @@ class Bullet{
         this.x = x;
         this.y = y;
         this.hasNotHit = true;
+        this.hitBunker = false;
         
     }
 
-    draw(){
-        if(this.hasNotHit){
-            fill(255,0,0)
-            circle(this.x+10,this.y,7)
+    draw() {
+        if (this.hasNotHit && !this.hitBunker) {
+            fill(255, 0, 0);
+            circle(this.x + 10, this.y, 7);
         }
     }
 
@@ -267,7 +269,7 @@ class Bullet{
         this.y-=2
     }
 
-    hasHit(aliens){
+    hasHitAliens(aliens){
         for (let i=0;i<aliens.length;i++){
             if (aliens[i].alive && this.hasNotHit){
                 if (this.x > (aliens[i].x)-3 && this.x < (aliens[i].x)+27
@@ -280,8 +282,37 @@ class Bullet{
         }
     }
 
-
-
+    hasHitBunkers(bunkers) {
+        for (let i = 0; i < bunkers.length; i++) {
+            if (bunkers[i].alive && this.hasNotHit) {
+                let bulletLeft = this.x - 3;
+                let bulletRight = this.x + 3;
+                let bulletTop = this.y - 3;
+                let bulletBottom = this.y + 3;
+    
+                let bunkerLeft = bunkers[i].x;
+                let bunkerRight = bunkers[i].x + bunkers[i].width;
+                let bunkerTop = bunkers[i].y;
+                let bunkerBottom = bunkers[i].y + bunkers[i].height;
+    
+                if (
+                    bulletRight > bunkerLeft &&
+                    bulletLeft < bunkerRight &&
+                    bulletBottom > bunkerTop &&
+                    bulletTop < bunkerBottom
+                ) {
+                    console.log("Bullet hit bunker!");
+                    this.hasNotHit = false;
+                    this.hitBunker = true;
+    
+                    // Remove the bullet from the array
+                    bullets.splice(bullets.indexOf(this), 1);
+                }
+            }
+        }
+    }
+    
+    
 }
 
 //https://github.com/Remy0204/Space.git
@@ -291,5 +322,5 @@ class Bullet{
 //git init 
 //git add -A
 //git status 
-//git commit -m (navn på commit)
+//git commit -m 'navn på commit'
 //git push -u origin master 
