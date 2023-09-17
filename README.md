@@ -68,5 +68,3 @@ For at forklare hvordan delene fungere laver jeg nogle punkter:
 7. spil loop 
   * Det handler om at updatere og tegne spil elementer gentagende gange indtil en kondition et nået. Et eksempel kan være aliensne som rammer bunden og spiller stopper. 
 
-# Test af programmet
-
