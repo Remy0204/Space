@@ -39,18 +39,11 @@ function setup() {
             
     }
     
-    for (let i = 0; i < 3; i++) { // Adjust the number of bunkers as needed
-    bunkers.push(new Bunker(100 + i * 200, height - 125, 55, 10)); // Adjust positions and size
+    for (let i = 0; i < 3; i++) { //antal af bunkers
+    bunkers.push(new Bunker(100 + i * 200, height - 125, 55, 10)); //justere position og størrelse
   }
 }
-   // alien = new Alien(width/2-10,20)
-  
-
-
-
-
-
-
+ 
 function draw()
 {
     background(0)
@@ -69,8 +62,6 @@ function draw()
        // print(bullets.length)
     //    print("after hashit")
      //  bullets[i].hasHit(aliensLine2);
-
-     
     }
 
     for (let i = 0; i < bunkers.length; i++) {
@@ -82,35 +73,35 @@ function draw()
         aliensLine2[i].draw()
         aliensLine2[i].update()
         aliensLine3[i].draw()
-        aliensLine3[i].update()
-        
+        aliensLine3[i].update() 
     }
+
     //print("locationStage "aliensLine1[2].locationStage)
     //print(aliensLine1[2].x)
     //print(aliensLine1[2].y)
     //print(aliensLine1[2].dx)
     //print(aliensLine1[2])
+
     if (aliensLine1[0].y > height) 
         noLoop()
 }
 
-class Bunker {
-    constructor(x, y, width, height) {
+class Bunker { //der her i min klasse, til bunkere.
+    constructor(x, y, width, height) { //her har jeg lavet en controuctor med nogle attributter
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
     }
   
-    draw() {
-      // Draw the bunker using rect()
-      fill(255, 255, 200); // Adjust the color as needed
+    draw() { //her i denne metode fortæller vi, hvordan vores bunker skal tegnes. 
+      fill(255, 255, 200); 
       rect(this.x, this.y, this.width, this.height);
     }
   }
 
 
-class Alien{
+class Alien{//her har vi alien klassen, med dens attributter og metoder. 
     constructor(x,y){
         this.x = x
         this.y = y
@@ -153,7 +144,7 @@ class Alien{
             this.locationStage++
         }
         else if(this.locationStage==48){
-            this.y+=9 ////hastighed ned af,når alians færdigør en omgang
+            this.y+=9 //hastighed ned af,når alians færdigør en omgang
             this.dx = -this.dx
             this.locationStage = -15    
 
@@ -301,12 +292,9 @@ class Bullet{
                     bulletBottom > bunkerTop &&
                     bulletTop < bunkerBottom
                 ) {
-                    console.log("Bullet hit bunker!");
+                    console.log("Bullet hit bunker");
                     this.hasNotHit = false;
                     this.hitBunker = true;
-    
-                    // Remove the bullet from the array
-                    bullets.splice(bullets.indexOf(this), 1);
                 }
             }
         }
