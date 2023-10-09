@@ -23,7 +23,7 @@ Jeg fik bunkerene til at fungere delvist, men skibet, bullets og alians fungere 
 
 # Svær kode
 "
-hasHitAliens(aliens){ 
+´´´hasHitAliens(aliens){ 
         for (let i=0;i<aliens.length;i++){
             if (aliens[i].alive && this.hasNotHit){
                 if (this.x > (aliens[i].x)-3 && this.x < (aliens[i].x)+27
@@ -35,7 +35,7 @@ hasHitAliens(aliens){
             }
         }
     }
-"
+´´´
 Denne metoder under klassen bullet, tjekker om en alian er blevet ramt af en bullet. Den tjekker om alien er "alive" og om bullet har ramt noget endnu for hver eneste alian. Den ved om bulleten har ramt alian, ved at se både bulleten og alians position overlapper hinanden, hvis de gør har bulleten ramt alian, og den specifikke alian skal ikke blive tegnet mere. Altså hvis en bullet position overlapper en alians position, sætter den "aliens[i].alive" til "false" og "this.hasNotHit" til false. 
 
 For at forklare hvordan delene fungere laver jeg nogle punkter: 
